@@ -1,0 +1,22 @@
+#!/bin/sh -ex
+
+# configure tkl-webcp
+WEBROOT=/var/lib/tomcat6/webapps/ROOT
+
+rm $WEBROOT/index.html
+
+for dir in js css images; do
+    mkdir -p $WEBROOT/$dir
+    cp -a /var/www/$dir/* $WEBROOT/$dir
+    rm -rf /var/www/$dir
+done
+
+sed -i "s|HOSTNAME_DESC|Tomcat|g" $WEBROOT/index.jsp
+sed -i "s|HOSTNAME|tomcat|g" $WEBROOT/index.jsp
+
+# allow binding to 80/443 (and bugfix LP#594989)
+echo AUTHBIND=yes >> /etc/default/tomcat6
+echo 0.0.0.0/0:1,1023 > /etc/authbind/byuid/106
+
+# generate tomcat keystore from default ssl certificate
+/usr/lib/inithooks/firstboot.d/16tomcat-sslcert

@@ -1,0 +1,116 @@
+turnkey-tomcat-12.0 (1) turnkey; urgency=low
+
+  * Tomcat: Upgraded to latest upstream package.
+
+  * Major component versions
+
+    tomcat6         6.0.35-1+squeeze2
+    openjdk-6-jdk   6b18-1.8.13-0+squeeze2
+    openjdk-6-jre   6b18-1.8.13-0+squeeze2
+    ant             1.8.0-4
+    mysql-server    5.1.63-0+squeeze1
+    libmysql-java   5.1.10+dfsg-2
+
+  * Note: Please refer to turnkey-core's changelog for changes common to all
+    appliances. Here we only describe changes specific to this appliance.
+
+ -- Alon Swartz <alon@turnkeylinux.org>  Wed, 01 Aug 2012 08:00:00 +0200
+
+turnkey-tomcat-11.3 (1) turnkey; urgency=low
+
+  * Installed security updates.
+  * Enabled etckeeper garbage collection by default.
+  * Upgraded to latest inithooks version (adhoc re-initialization via turnkey-init)
+
+ -- Alon Swartz <alon@turnkeylinux.org>  Mon, 05 Dec 2011 10:48:44 +0000
+
+turnkey-tomcat-11.2 (1) turnkey; urgency=low
+
+  * Installed security updates.
+  * Added HubDNS package and firstboot configuration.
+
+ -- Alon Swartz <alon@turnkeylinux.org>  Fri, 15 Jul 2011 07:47:08 +0000
+
+turnkey-tomcat-11.1 (1) turnkey; urgency=low
+
+  * Tomcat:
+
+    - Upgraded to tomcat6 from tomcat5.5
+    - Transitioned to OpenJDK (moving away from Sun Java).
+    - Installed, configured and bugfixes authbind (bind to 80/443).
+    - Set Tomcat admin password on firstboot (convenience, security).
+    - Added URIEncoding="UTF-8" to SSL connection.
+    - Added offline documentation.
+
+  * MySQL:
+
+    - Added MySQL as per common request.
+    - Set MySQL root password on firstboot (convenience, security).
+    - Force MySQL to use Unicode/UTF8.
+
+  * Set postfix MTA myhostname to localhost (bugfix).
+
+  * Updated TKL web control panel (admin not ported to tomcat6).
+
+  * Major component versions:
+
+    tomcat6          6.0.24-2ubuntu1.5
+    openjdk-6-jdk    6b20-1.9.2-0ubuntu1~10.04.1
+    openjdk-6-jre    6b20-1.9.2-0ubuntu1~10.04.1
+    ant              1.7.1-4ubuntu1.1
+
+  * Note: Please refer to turnkey-core's changelog for changes common to all
+    appliances. Here we only describe changes specific to this appliance.
+
+ -- Alon Swartz <alon@turnkeylinux.org>  Sun, 19 Dec 2010 15:01:05 +0200
+
+turnkey-tomcat-2009.10 (2) hardy; urgency=low
+
+  * Installed all security updates (see manifest for package versions).
+  
+  * Install security updates on firstboot (except when running live).
+  
+  * Trick webmin into not checking for upgrades (managed by apt).
+  
+  * Included latest version of inithooks and updated scripts.
+
+  * Included wget as per common request.
+
+ -- Alon Swartz <alon@turnkeylinux.org>  Mon, 29 Mar 2010 09:02:11 +0200
+
+turnkey-tomcat-2009.10 (1) hardy; urgency=low
+
+  * Initial public release of TurnKey Tomcat.
+
+  * SSL support out of the box.
+
+  * Includes Turnkey web control panel (convenience).
+
+  * Includes postfix MTA (bound to localhost) to allow sending of email from
+    web applications (e.g., password recovery). Also added webmin-postfix
+    module for convenience.
+
+  * Tomcat and Java configurations:
+
+    - Configured Tomcat admin/manager roles and admin user.
+    - Configured Tomcat HTTP connector to bind to port 80 (default: 8180).
+    - Configured SSL port to bind to port 443 (default: 8443).
+    - Disabled AJP connector on port 8009 (security).
+    - Tomcat and Java environment variables configuration system wide.
+
+  * Enabled multiverse Ubuntu repository and pinned sun-java6 so it can be
+    updated (security).
+
+  * Regenerates all secrets during installation / firstboot (security).
+
+  * Major component versions:
+
+    tomcat5.5          5.5.25-5ubuntu1.2
+    sun-java6-jdk      6-16-0ubuntu1.8.04
+    sun-java6-jre      6-16-0ubuntu1.8.04
+    ant                1.7.0-3
+
+  * Note: Please refer to turnkey-core's changelog for changes common to all
+    appliances. Here we only describe changes specific to this appliance.
+
+ -- Alon Swartz <alon@turnkeylinux.org>  Tue, 29 Sep 2009 15:39:41 +0200

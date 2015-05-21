@@ -19,4 +19,4 @@ echo AUTHBIND=yes >> /etc/default/tomcat7
 echo 0.0.0.0/0:1,1023 > /etc/authbind/byuid/106
 
 # generate tomcat keystore from default ssl certificate
-/usr/lib/inithooks/firstboot.d/17tomcat-sslcert
+/usr/lib/inithooks/firstboot.d/16tomcat-sslcert

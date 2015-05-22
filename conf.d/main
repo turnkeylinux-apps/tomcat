@@ -18,9 +18,12 @@ sed -i "s|HOSTNAME|tomcat|g" $WEBROOT/index.jsp
 echo AUTHBIND=yes >> /etc/default/tomcat7
 #echo 0.0.0.0/0:1,1023 > /etc/authbind/byuid/106
 
-touch /etc/authbind/byport/{80,443}
-chmod 500 /etc/authbind/byport/{80,443}
-chown tomcat7 /etc/authbind/byport/{80,443}
+touch /etc/authbind/byport/443
+chmod 500 /etc/authbind/byport/443
+chown tomcat7 /etc/authbind/byport/443
+touch /etc/authbind/byport/80
+chmod 500 /etc/authbind/byport/80
+chown tomcat7 /etc/authbind/byport/80
 
 # generate tomcat keystore from default ssl certificate
 /usr/lib/inithooks/firstboot.d/16tomcat-sslcert

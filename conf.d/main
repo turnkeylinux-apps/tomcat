@@ -17,7 +17,7 @@ sed -i "s|HOSTNAME|tomcat|g" $WEBROOT/index.jsp
 # allow binding to 80/443 (and bugfix LP#594989)
 sed -i "s/^#AUTHBIND.*/AUTHBIND=yes/" /etc/default/tomcat7
 echo 0.0.0.0/0:1,1023 > /etc/authbind/byuid/106
-# as per http://stackoverflow.com/a/23547702/3124333
+# from http://stackoverflow.com/a/23547702/3124333
 touch /etc/authbind/byport/80
 chmod 500 /etc/authbind/byport/80
 chown tomcat7 /etc/authbind/byport/80
@@ -27,3 +27,10 @@ chown tomcat7 /etc/authbind/byport/443
 
 # generate tomcat keystore from default ssl certificate
 /usr/lib/inithooks/firstboot.d/16tomcat-sslcert
+
+# from https://bugs.launchpad.net/ubuntu/+source/tomcat7/+bug/1232258
+ln -s /var/lib/tomcat7/common/ /usr/share/tomcat7/common
+ln -s /var/lib/tomcat7/server/ /usr/share/tomcat7/server
+ln -s /var/lib/tomcat7/shared/ /usr/share/tomcat7/shared
+ln -s /var/lib/tomcat7/conf/ /usr/share/tomcat7/conf
+ln -s /var/lib/tomcat7/logs/ /usr/share/tomcat7/logs

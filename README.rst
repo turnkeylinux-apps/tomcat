@@ -19,7 +19,7 @@ and on top of that:
    
    - Installed from package management.
    - Using OpenJDK Java runtime.
-   - Web applications in /var/lib/tomcat6/webapps.
+   - Web applications in /var/lib/tomcat7/webapps.
    - Includes TurnKey web control panel.
    - Created Tomcat admin/manager roles and admin user.
    - Bind Tomcat HTTP connector to port 80 (default: 8180).

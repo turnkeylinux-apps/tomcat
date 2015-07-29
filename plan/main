@@ -11,6 +11,3 @@ authbind        /* Allows non-root programs to bind() to low ports */
 mysql-server
 libmysql-java
 webmin-mysql
-
-postfix
-webmin-postfix

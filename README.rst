@@ -40,5 +40,5 @@ Credentials *(passwords set at first boot)*
 
 
 .. _Tomcat: http://tomcat.apache.org
-.. _Tomcat on Apache Appliance: http://www.turnkeylinux.org/tomcat-apache
-.. _TurnKey Core: http://www.turnkeylinux.org/core
+.. _Tomcat on Apache Appliance: https://www.turnkeylinux.org/tomcat-apache
+.. _TurnKey Core: https://www.turnkeylinux.org/core

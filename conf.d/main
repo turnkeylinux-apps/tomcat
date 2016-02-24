@@ -27,9 +27,3 @@ chown tomcat7 /etc/authbind/byport/443
 # generate tomcat keystore from default ssl certificate
 /usr/lib/inithooks/firstboot.d/16tomcat-sslcert
 
-# from https://bugs.launchpad.net/ubuntu/+source/tomcat7/+bug/1232258
-ln -s /var/lib/tomcat7/common/ /usr/share/tomcat7/common
-ln -s /var/lib/tomcat7/server/ /usr/share/tomcat7/server
-ln -s /var/lib/tomcat7/shared/ /usr/share/tomcat7/shared
-ln -s /var/lib/tomcat7/conf/ /usr/share/tomcat7/conf
-ln -s /var/lib/tomcat7/logs/ /usr/share/tomcat7/logs

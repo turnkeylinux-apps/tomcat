@@ -1,7 +1,7 @@
 #!/bin/sh -ex
 
 # configure tkl-webcp
-WEBROOT=/var/lib/tomcat8/webapps/ROOT
+WEBROOT=/var/lib/tomcat9/webapps/ROOT
 
 rm $WEBROOT/index.html
 
@@ -11,18 +11,17 @@ for dir in js css images; do
     rm -rf /var/www/$dir
 done
 
-#sed -i "s|HOSTNAME_DESC|Tomcat|g" $WEBROOT/index.jsp
-#sed -i "s|HOSTNAME|tomcat|g" $WEBROOT/index.jsp
+sed -i "s|HOSTNAME_DESC|Tomcat|g" $WEBROOT/index.jsp
+sed -i "s|HOSTNAME|tomcat|g" $WEBROOT/index.jsp
 
-# allow binding to 80/443
-sed -i "s/^#AUTHBIND.*/AUTHBIND=yes/" /etc/default/tomcat8
-# from http://stackoverflow.com/a/23547702/3124333
-touch /etc/authbind/byport/80
-chmod 500 /etc/authbind/byport/80
-chown tomcat8 /etc/authbind/byport/80
-touch /etc/authbind/byport/443
-chmod 500 /etc/authbind/byport/443
-chown tomcat8 /etc/authbind/byport/443
+setup_authbind() {
+    touch /etc/authbind/byport/$1
+    chmod 500 /etc/authbind/byport/$1
+    chown tomcat /etc/authbind/byport/$1
+}
+
+setup_authbind 80
+setup_authbind 443
 
 # generate tomcat keystore from default ssl certificate
 /usr/lib/inithooks/firstboot.d/16tomcat-sslcert

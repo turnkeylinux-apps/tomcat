@@ -19,10 +19,10 @@ and on top of that:
    
    - Installed from package management.
    - Using OpenJDK Java runtime.
-   - Web applications in /var/lib/tomcat8/webapps.
+   - Web applications in /var/lib/tomcat9/webapps.
    - Includes TurnKey web control panel.
    - Created Tomcat admin/manager roles and admin user.
-   - Bind Tomcat HTTP connector to port 80 (default: 8180).
+   - Bind Tomcat HTTP connector to port 80 (default: 8080).
    - Bind SSL interface to port 443 (default: 8443).
    - Disabled AJP connector on port 8009 (security).
    - Tomcat and Java environment variables configuration system wide.
@@ -39,6 +39,6 @@ Credentials *(passwords set at first boot)*
 -  Tomcat administration applications: username **admin**
 
 
-.. _Tomcat: http://tomcat.apache.org
+.. _Tomcat: https://tomcat.apache.org
 .. _Tomcat on Apache Appliance: https://www.turnkeylinux.org/tomcat-apache
 .. _TurnKey Core: https://www.turnkeylinux.org/core

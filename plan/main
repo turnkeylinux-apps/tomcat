@@ -3,12 +3,11 @@
 
 ant
 
-openjdk-8-jdk
-openjdk-8-jre
-
+openjdk-11-jdk-headless
+openjdk-11-jre-headless
 
 authbind        /* Allows non-root programs to bind() to low ports */
 
-mysql-server
-libmysql-java
+default-mysql-server
+libmariadb-java
 webmin-mysql

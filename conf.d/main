@@ -1,7 +1,7 @@
 #!/bin/sh -ex
 
 # configure tkl-webcp
-WEBROOT=/var/lib/tomcat9/webapps/ROOT
+WEBROOT=/var/lib/tomcat10/webapps/ROOT
 
 rm $WEBROOT/index.html
 

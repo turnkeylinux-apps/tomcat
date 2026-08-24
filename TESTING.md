@@ -12,6 +12,11 @@ The standalone appliance binds Tomcat directly to ports 80 and 443. It does
 not use the Apache reverse proxy provided by the separate Tomcat on Apache
 appliance.
 
+The shared v19 cipher substitution leaves its quoted placeholder attached to
+the selected Tomcat cipher list. The appliance removes only that invalid XML
+suffix after shared configuration, preserving the shared Trixie cipher
+selection.
+
 ## Acceptance command
 
 ```sh

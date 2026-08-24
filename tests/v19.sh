@@ -70,7 +70,8 @@ curl --fail --silent --show-error --user "admin:$password" \
 grep -q 'Tomcat Virtual Host Manager' "$response"
 curl --fail --silent --show-error --user "admin:$password" \
     "$manager/serverinfo" >"$response"
-grep -q '^OK - Server version:' "$response"
+grep -Fxq 'OK - Server info' "$response"
+grep -q '^Tomcat Version: \[Apache Tomcat/10\.1\.' "$response"
 grep -q 'username="admin"' /etc/tomcat10/tomcat-users.xml
 ! grep -q 'password="turnkey"' /etc/tomcat10/tomcat-users.xml
 

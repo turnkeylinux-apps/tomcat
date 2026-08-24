@@ -42,15 +42,16 @@ grep -q '^10\.1\.' <<<"$tomcat_version"
 grep -q 'version "21\.' <<<"$java_version"
 java_binary=$(readlink -f "$(command -v java)")
 dpkg-query -S /usr/share/tomcat10/bin/catalina.sh "$java_binary" >/dev/null
-test -d /var/lib/tomcat10/webapps/manager
-test -d /var/lib/tomcat10/webapps/host-manager
-test -d /var/lib/tomcat10/webapps/docs
+test -d /usr/share/tomcat10-admin/manager
+test -d /usr/share/tomcat10-admin/host-manager
+test -d /usr/share/tomcat10-docs/docs
 test -s /etc/tomcat10/cert.p12
 grep -q 'CATALINA_HOME="/usr/share/tomcat10"' /etc/environment
 grep -q 'JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"' /etc/environment
 ! ss -ltnH 'sport = :8009' | grep -q .
 
-curl --fail --silent --show-error http://127.0.0.1/ >"$response"
+curl --retry 15 --retry-all-errors --retry-delay 1 \
+    --fail --silent --show-error http://127.0.0.1/ >"$response"
 grep -q 'TurnKey Tomcat' "$response"
 grep -q 'href="/manager/html"' "$response"
 grep -q 'href="/host-manager/html"' "$response"

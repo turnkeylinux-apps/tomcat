@@ -4,6 +4,7 @@ umask 077
 
 result=${TKL_TEST_RESULT:?TKL_TEST_RESULT is required}
 password=${TKL_TEST_APP_PASS:?TKL_TEST_APP_PASS is required}
+db_password=${TKL_TEST_DB_PASS:?TKL_TEST_DB_PASS is required}
 manager=http://127.0.0.1/manager/text
 context=/turnkey-v19-test
 war_root=$(mktemp -d /tmp/tkl-tomcat-war.XXXXXX)
@@ -20,7 +21,8 @@ cleanup() {
             "$manager/undeploy?path=$context" >/dev/null || true
     fi
     if $database_created; then
-        mariadb --execute "DROP DATABASE IF EXISTS $database" || true
+        mariadb --user=root --password="$db_password" \
+            --execute "DROP DATABASE IF EXISTS $database" || true
     fi
     rm -rf -- "$war_root"
     rm -f -- "$war" "$response" "$policy"
@@ -101,14 +103,18 @@ dpkg-query -W webmin-mysql >/dev/null
 curl --insecure --fail --silent --show-error --head \
     https://127.0.0.1:12321/ >/dev/null
 
-mariadb --execute "CREATE DATABASE $database"
+mariadb --user=root --password="$db_password" \
+    --execute "CREATE DATABASE $database"
 database_created=true
-mariadb "$database" --execute \
+mariadb --user=root --password="$db_password" "$database" --execute \
     'CREATE TABLE probe (value VARCHAR(32)); INSERT INTO probe VALUES ("database-ok")'
-mariadb --batch --skip-column-names "$database" \
+mariadb --user=root --password="$db_password" --batch --skip-column-names \
+    "$database" \
     --execute 'SELECT value FROM probe' | grep -Fxq 'database-ok'
-mariadb "$database" --execute 'DELETE FROM probe; DROP TABLE probe'
-mariadb --execute "DROP DATABASE $database"
+mariadb --user=root --password="$db_password" "$database" \
+    --execute 'DELETE FROM probe; DROP TABLE probe'
+mariadb --user=root --password="$db_password" \
+    --execute "DROP DATABASE $database"
 database_created=false
 
 before="$tomcat_package|$tomcat_admin_package|$java_package|$mariadb_package"

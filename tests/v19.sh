@@ -15,6 +15,12 @@ database=tkl_tomcat_v19_acceptance
 deployed=false
 database_created=false
 
+report_error() {
+    printf 'test_failure line=%s status=%s command=%q\n' \
+        "$1" "$2" "$3" >&2
+    exit "$2"
+}
+
 cleanup() {
     if $deployed; then
         curl --fail --silent --show-error --user "admin:$password" \
@@ -27,6 +33,7 @@ cleanup() {
     rm -rf -- "$war_root"
     rm -f -- "$war" "$response" "$policy"
 }
+trap 'report_error "$LINENO" "$?" "$BASH_COMMAND"' ERR
 trap cleanup EXIT
 
 systemctl --quiet is-active tomcat10.service mariadb.service multi-user.target

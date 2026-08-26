@@ -57,7 +57,10 @@ physical hardware. Tomcat adds no behavior at those boundaries, so the Core
 
 ## Accepted run
 
-Pending the exact acceptance command above.
+The exact acceptance command passed at source commit
+`7323dd61d1fe75d56afc7831124985aefe278739`. Run identity, appliance
+evidence and known limitations are recorded in
+[`docs/v19.0-testing.md`](docs/v19.0-testing.md).
 
 ## Deferred minor issues
 

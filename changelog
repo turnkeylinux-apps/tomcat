@@ -1,3 +1,15 @@
+turnkey-tomcat-19.0 (1) turnkey; urgency=low
+
+  * Update the standalone appliance for Debian 13 Trixie packages, including
+    Tomcat 10.1 and OpenJDK 21.
+
+  * Update the bundled Tomcat documentation link for the packaged release.
+
+  * Add focused runtime acceptance for the Tomcat managers, direct HTTP and
+    HTTPS connectors, WAR deployment, MariaDB, Webmin and APT updates.
+
+ -- TurnKey Linux Developers <admin@turnkeylinux.org>  Mon, 24 Aug 2026 00:00:00 +0000
+
 turnkey-tomcat-18.0 (1) turnkey; urgency=low
 
   * Updated all relevant Debian packages to Bookworm/12 versions; including
